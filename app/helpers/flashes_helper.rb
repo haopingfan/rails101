@@ -1,5 +1,5 @@
 module FlashesHelper
-  FLASH_CLASS = { alert: 'danger', notice: 'success', warning: 'warning' }
+  FLASH_CLASS = { alert: 'danger', notice: 'success', warning: 'warning' }.freeze
 
   def to_bootstap_class(key)
     FLASH_CLASS[key.to_sym]
