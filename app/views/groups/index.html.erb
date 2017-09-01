@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <%= link_to('New Group', new_group_path, class: 'btn btn-primary pull-right') %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th> <!-- for table-striped 版型用-->
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to(group.title, group_path(group)) %></td>
+          <td>group.description</td>
+          <td>
+            <%= link_to('編輯', edit_group_path(group), class: 'btn btn-info btn-sm') %>
+            <%= link_to('刪除', group_path(group), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
