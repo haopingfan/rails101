@@ -43,6 +43,10 @@ class GroupsController < ApplicationController
   end
 
   def find_group_by_id
-    @group = Group.find(params[:id])
+    begin
+      @group = Group.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to groups_path, alert: "The group id doesn't exist."
+    end
   end
 end
