@@ -1,5 +1,18 @@
-<%= simple_form_for @group do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description, as: :text %>
-  <%= f.button :submit, class: "btn-primary" %>
+<%= form_for @group do |f| %>
+  <% if @group.errors.any? %>
+    <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <%= f.submit submit_button, class: 'btn btn-primary' %>
 <% end %>
