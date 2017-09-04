@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to groups_path, notice: '討論板 新建成功!'
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to groups_path, notice: '討論版 更新成功!'
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -43,10 +43,8 @@ class GroupsController < ApplicationController
   end
 
   def find_group_by_id
-    begin
-      @group = Group.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to groups_path, alert: "The group id doesn't exist."
-    end
+    @group = Group.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to groups_path, alert: "The group id doesn't exist."
   end
 end
