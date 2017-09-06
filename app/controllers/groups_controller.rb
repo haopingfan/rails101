@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
   before_action :find_group_by_id, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_owner, only: [:edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -10,7 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.new(group_params)
 
     if @group.save
       redirect_to groups_path, notice: '討論板 新建成功!'
@@ -46,5 +48,9 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to groups_path, alert: "The group id doesn't exist."
+  end
+
+  def authenticate_owner
+    redirect_to groups_path, alert: 'You have no permission.' if current_user != @group.creator
   end
 end
