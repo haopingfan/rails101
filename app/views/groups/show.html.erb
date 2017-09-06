@@ -1,5 +1,7 @@
 <div class="container-fluid">
-  <%= link_to '編輯', edit_group_path(@group), class: 'btn btn-primary pull-right' %>
+  <% if current_user == @group.creator %>
+    <%= link_to '編輯', edit_group_path(@group), class: 'btn btn-primary pull-right' %>
+  <% end %>
   <h2><%= @group.title %></h2>
   <p><%= @group.description %></p>
 </div>
