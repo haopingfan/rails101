@@ -21,7 +21,9 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @posts = @group.posts.recent.paginate(page: params[:page], per_page: 5)
+  end
 
   def edit; end
 
