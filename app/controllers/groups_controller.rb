@@ -12,8 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.creator = current_user
+    @group = current_user.groups.new(group_params)
 
     if @group.save
       redirect_to groups_path, notice: '討論板 新建成功!'
@@ -52,6 +51,6 @@ class GroupsController < ApplicationController
   end
 
   def authenticate_owner
-    redirect_to groups_path, alert: 'You have no permission.' unless current_user && current_user == @group.creator
+    redirect_to groups_path, alert: 'You have no permission.' if current_user != @group.creator
   end
 end
