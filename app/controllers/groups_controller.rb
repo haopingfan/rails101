@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :find_group_by_id, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :find_group_by_id, only: [:show, :edit, :update, :destroy, :join, :quit]
+  before_action :authenticate_user!, only: [:new, :create, :join, :quit]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
 
   def index
@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
 
     if @group.save
+      current_user.join!(@group)
       redirect_to groups_path, notice: '討論板 新建成功!'
     else
       render :new
@@ -38,6 +39,28 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     redirect_to groups_path, alert: '討論版 已刪除!'
+  end
+
+  def join
+    if current_user.member_of?(@group)
+      flash[:warning] = '你已經是本版討論成員了！'
+    else
+      current_user.join!(@group)
+      flash[:notice] = '加入本討論板成功！'
+    end
+
+    redirect_to group_path(@group)
+  end
+
+  def quit
+    if current_user.member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert] = '已退出本討論版！'
+    else
+      flash[:warning] = '你不是本討論板成員，怎麼退出啊XD'
+    end
+
+    redirect_to group_path(@group)
   end
 
   private
