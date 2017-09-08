@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy]{ set_group(:id) }
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
 
