@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_group
-  before_action :authenticate_member
+  before_action :authenticate_member, only: [:new, :create]
 
   def new
     @post = Post.new
@@ -15,6 +15,26 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to account_posts_path, notice: '文章 更新成功!'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to account_posts_path, alert: '文章 已刪除!'
   end
 
   private

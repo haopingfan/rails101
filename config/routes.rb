@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'groups#index'
   resources :groups do
-    resources :posts, only: [:new, :create]
+    resources :posts, except: [:index, :show]
   end
   resources :group_users, only: [:create, :destroy]
   namespace :account do
