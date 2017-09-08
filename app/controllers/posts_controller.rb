@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_member
   before_action :set_group
+  before_action :authenticate_member
 
   def new
     @post = Post.new
