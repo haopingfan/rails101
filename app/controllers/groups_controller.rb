@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy]{ set_group(:id) }
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
 
@@ -49,5 +49,11 @@ class GroupsController < ApplicationController
 
   def authenticate_owner
     redirect_to groups_path, alert: 'You have no permission.' if current_user != @group.creator
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to groups_path, alert: "The group id doesn't exist."
   end
 end
