@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_group
   before_action :authenticate_member
+  before_action :set_group
 
   def new
     @post = Post.new
@@ -29,8 +29,7 @@ class PostsController < ApplicationController
   end
 
   def set_group
-    @group = Group.find(params[:group_id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to groups_path, alert: "The group id doesn't exist."
+    @group = Group.find_by(id: params[:group_id])
+    redirect_to groups_path, alert: "The group id doesn't exist." if @group == nil
   end
 end

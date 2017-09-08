@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -52,8 +52,7 @@ class GroupsController < ApplicationController
   end
 
   def set_group
-    @group = Group.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to groups_path, alert: "The group id doesn't exist."
+    @group = Group.find_by(id: params[:id])
+    redirect_to groups_path, alert: "The group id doesn't exist." if @group == nil
   end
 end
