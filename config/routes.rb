@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root 'groups#index'
   resources :groups do
     resources :posts, only: [:new, :create]
+    resource :group_users, only: [:create, :destroy]
   end
 end
