@@ -6,4 +6,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create]
   end
   resources :group_users, only: [:create, :destroy]
+  namespace :account do
+    resources :groups, only: :index
+  end
 end
