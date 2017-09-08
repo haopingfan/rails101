@@ -3,16 +3,13 @@
     <% if current_user && current_user.member_of?(@group) %>
     <!-- 用current_user先判斷是否為nil, 使用者為登出狀態訪問此頁面時, 就不會跳紅畫面-->
       <span class='label label-info'>群組成員</span>
-      <%= link_to '退出群組', quit_group_path(@group), method: :post, class: 'btn btn-primary'%>
+      <%= link_to '退出群組', group_user_path(@group), method: :delete, class: 'btn btn-primary' %>
+      <%= link_to 'Write a Post', new_group_post_path(@group), class: 'btn btn-success pull-right' %>
     <% else %>
       <span class='label label-warning'>不是群組成員</span>
-      <%= link_to '加入群組', join_group_path(@group), method: :post, class: 'btn btn-primary'%>
+      <%= link_to '加入群組', group_users_path(id: @group.id), method: :post, class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <% if current_user && current_user.member_of?(@group) %>
-  <!-- 用current_user先判斷是否為nil, 使用者為登出狀態訪問此頁面時, 就不會跳紅畫面-->
-    <%= link_to 'Write a Post', new_group_post_path(@group), class: 'btn btn-success pull-right' %>
-  <% end %>
   <% if current_user == @group.creator %>
     <%= link_to 'Edit Group', edit_group_path(@group), class: 'btn btn-primary pull-right' %>
   <% end %>
