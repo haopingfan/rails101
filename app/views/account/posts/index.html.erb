@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <h2 class="text-center">我發表過的文章</h2>
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Content</th>
+        <th>Group Name</th>
+        <th>Last Update</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each_with_index do |post, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= post.content %></td>
+          <td><%= post.group.title %></td>
+          <td><%= post.updated_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class='text-center'>
+    <%= will_paginate @posts %>
+  </div>
+</div>
