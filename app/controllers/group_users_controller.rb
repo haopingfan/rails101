@@ -1,5 +1,5 @@
 class GroupUsersController < ApplicationController
-  before_action :set_group
+  before_action{ set_group(:id) }
   before_action :authenticate_user!
 
   def create
