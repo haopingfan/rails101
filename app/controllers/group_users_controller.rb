@@ -1,5 +1,5 @@
 class GroupUsersController < ApplicationController
-  before_action{ set_group(:id) }
+  before_action :set_group
   before_action :authenticate_user!
 
   def create
@@ -22,5 +22,13 @@ class GroupUsersController < ApplicationController
     end
 
     redirect_to group_path(@group)
+  end
+
+  private
+
+  def set_group
+    @group = Group.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to groups_path, alert: "The group id doesn't exist."
   end
 end
