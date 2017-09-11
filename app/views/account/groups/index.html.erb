@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <h2 class="text-center">我加入的討論版</h2>
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Post Count</th>
+        <th>Last Update</th> <!-- for table-striped 版型用-->
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each_with_index do |group, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= link_to(group.title, group_path(group)) %></td>
+          <td><%= group.description %></td>
+          <td><%= group.posts.count %></td>
+          <td><%= group.updated_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
