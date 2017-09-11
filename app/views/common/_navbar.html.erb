@@ -15,8 +15,21 @@
             </a>
             <ul class="dropdown-menu">
               <li>
+                <%= link_to account_groups_path do %>
+                  <span class="glyphicon glyphicon-th-list"></span>
+                  My Groups
+                <% end %>
+              </li>
+              <li>
+                <%= link_to account_posts_path do %>
+                  <span class="glyphicon glyphicon-book"></span>
+                  My Posts
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span class="glyphicon glyphicon-log-out">
+                  <span class="glyphicon glyphicon-log-out"></span>
                   登出
                 <% end %>
               </li>
