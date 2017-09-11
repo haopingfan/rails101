@@ -56,6 +56,6 @@ class PostsController < ApplicationController
   end
 
   def authenticate_owner
-    redirect_to groups_path, alert: 'You have no permission.' if current_user != @post.user
+    redirect_to account_posts_path, alert: 'You have no permission.' if current_user != @post.user
   end
 end

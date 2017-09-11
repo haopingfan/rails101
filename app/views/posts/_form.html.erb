@@ -1,8 +1,8 @@
 <div class='col-md-4 col-md-offset-4'>
-  <%= form_for [@group, @post] do |f| %>
-    <% if @post.errors.any? %>
+  <%= form_for [group, post] do |f| %>
+    <% if post.errors.any? %>
       <ul>
-        <% @post.errors.full_messages.each do |msg| %>
+        <% post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
