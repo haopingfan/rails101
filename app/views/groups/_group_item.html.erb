@@ -1,6 +1,6 @@
 <tr>
   <td><%= group_counter + 1 %></td>
-  <!-- the group_counter is given by rendering partial with collection, it works like index -->
+  <!-- group_counter is given by rendering partial with collection, it works like index -->
   <td><%= link_to(group.title, group_path(group)) %></td>
   <td><%= simple_format(group.description, style: 'color: red') %></td>
   <td><%= group.creator.email %></td>
