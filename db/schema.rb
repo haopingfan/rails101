@@ -28,11 +28,13 @@ ActiveRecord::Schema.define(version: 20170918073349) do
   end
 
   create_table "identities", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user_id"
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider"], name: "index_identities_on_provider"
+    t.index ["uid"], name: "index_identities_on_uid"
   end
 
   create_table "posts", force: :cascade do |t|

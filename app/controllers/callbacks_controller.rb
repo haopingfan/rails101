@@ -13,25 +13,14 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
   def callback_handler
     auth = request.env['omniauth.auth']
-    @identity = Identity.find_or_intialize_with_omniauth(auth)
+    @identity = Identity.find_by(uid: auth['uid'], provider: auth['provider'])
 
-    if @identity.user
-      sign_in @identity.user
-      redirect_to root_path, notice: 'Signed in. Welcome back!'
-    elsif User.find_by(email: auth.info['email'])
-      @user = User.find_by(email: auth.info['email'])
-      set_identity_and_sign_in(@identity, @user, 'Successfully linked this account. Signed in. Welcome back!')
-    else
-      @user = User.initialize_with_omniauth(auth)
-      @user.save # @user needs to hit database first to get id and sign in
-      set_identity_and_sign_in(@identity, @user, 'Registered. Welcome to Bonbonwo101!')
+    if @identity.nil?
+      user = User.find_by(email: auth.info['email']) || User.create_with_omniauth(auth)
+      @identity = Identity.create(uid: auth['uid'], provider: auth['provider'], user: user)
+      # @user needs to hit database first to get id for user_id column and sign in
     end
-  end
 
-  def set_identity_and_sign_in(identity, user, msg)
-    identity.user_id = user.id
-    identity.save
-    sign_in user
-    redirect_to root_path, notice: msg
+    sign_in_and_redirect @identity.user
   end
 end
