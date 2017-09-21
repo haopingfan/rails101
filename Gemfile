@@ -40,7 +40,7 @@ gem 'devise'
 # use gem will_paginate for paging
 gem 'will_paginate'
 
-#
+# use omniauth for social site login
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
