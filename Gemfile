@@ -40,6 +40,12 @@ gem 'devise'
 # use gem will_paginate for paging
 gem 'will_paginate'
 
+# use for saving sensitive information such as username and password as environment variables
+gem 'figaro'
+
+# use for background delayed job
+gem 'delayed_job_active_record'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
