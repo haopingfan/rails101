@@ -43,6 +43,11 @@ gem 'will_paginate'
 # use for background delayed job
 gem 'delayed_job_active_record'
 
+# use omniauth for social site login
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
