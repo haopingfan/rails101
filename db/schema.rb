@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170925104815) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+    t.index ["priority", "run_at"], name: "index_delayed_jobs_on_priority_and_run_at"
   end
 
   create_table "group_users", force: :cascade do |t|
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170925104815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "cellphone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

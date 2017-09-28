@@ -14,8 +14,8 @@ class PostsController < ApplicationController
 
     if @post.save
       # Sends email to Group member when new post is created.
-      SendEmailJob.set(wait: 0.5.seconds).perform_later(@post)
-      
+      SendEmailJob.set(wait: 0.5.seconds).perform_later(@post.id)
+
       redirect_to group_path(@group), notice: '文章 新建成功!'
     else
       render :new
