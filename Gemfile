@@ -40,6 +40,9 @@ gem 'devise'
 # use gem will_paginate for paging
 gem 'will_paginate'
 
+# use for background delayed job
+gem 'delayed_job_active_record'
+
 # use omniauth for social site login
 gem 'omniauth'
 gem 'omniauth-facebook'
