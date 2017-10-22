@@ -4341,9 +4341,9 @@ react@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react_ujs@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-2.3.1.tgz#c63ffd23dbe140e3dfbd499d1ba8dc1e7b42724f"
+react_ujs@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-2.4.0.tgz#c1ec5690ae50d5901dd9403e3eb7296447ae2152"
 
 read-cache@^1.0.0:
   version "1.0.0"
