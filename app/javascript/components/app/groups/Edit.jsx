@@ -37,6 +37,9 @@ class Edit extends React.Component {
             titleValidateMsg: response.data.errors[0]
           })
         }
+        if (response.data.head === 'ok') {
+          window.location = '/groups';
+        }
       })
   };
 
