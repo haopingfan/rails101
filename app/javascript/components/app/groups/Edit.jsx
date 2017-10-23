@@ -11,15 +11,33 @@ class Edit extends React.Component {
     super(props);
 
     this.state = {
-      title: props.group.title,
-      description: props.group.description,
+      title: '',
+      description: '',
       titleValidateState: null,
-      titleValidateMsg: '',
+      titleValidateMsg: ''
     }
+  }
+
+  componentWillMount() {
+    this.setState({
+      title: this.props.group.title,
+      description: this.props.group.description
+    });
   }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleTitleChange= (e) => {
+    this.handleChange(e);
+    const length = e.target.value.length;
+    if (length > 0){
+      this.setState({
+        titleValidateState: null,
+        titleValidateMsg: ''
+      })
+    }
   };
 
   handleSubmit = (e) => {
@@ -60,7 +78,7 @@ class Edit extends React.Component {
               name = 'title'
               placeholder = 'Enter title'
               value = { this.state.title }
-              onChange = { this.handleChange }
+              onChange = { this.handleTitleChange }
             />
             <FormControl.Feedback />
             <HelpBlock>{ this.state.titleValidateMsg }</HelpBlock>
