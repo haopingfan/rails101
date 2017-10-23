@@ -1,7 +1,1 @@
-<div class="container-fluid">
-  <h2>編輯討論版</h2>
-  <hr>
-  <%= render 'form', submit_button: 'Update Group', group: @group %>
-</div>
-
-<%= react_component('groups/Edit') %>
+<%= react_component('groups/Edit', group: @group) %>
