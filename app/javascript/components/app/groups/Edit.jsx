@@ -48,14 +48,13 @@ class Edit extends React.Component {
     };
     axios.put(`/groups/${this.props.group.id}`, { group: data })
       .then((response) => {
-        console.log(response)
         if (response.data.errors){
           this.setState({
             titleValidateState: 'error',
             titleValidateMsg: response.data.errors[0]
           })
         }
-        if (response.data.head === 'ok') {
+        if (response.status === 200) {
           window.location = '/groups';
         }
       })
