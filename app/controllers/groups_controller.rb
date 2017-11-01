@@ -26,13 +26,18 @@ class GroupsController < ApplicationController
     @posts = @group.posts.recent.paginate(page: params[:page], per_page: 5)
   end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.json { render json: @group }
+      format.html
+    end
+  end
 
   def update
     if @group.update(group_params)
-      redirect_to groups_path, notice: '討論版 更新成功!'
+      render json: { head: :ok }
     else
-      render :edit
+      render json: { errors: @group.errors.full_messages }
     end
   end
 
