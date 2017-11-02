@@ -1,0 +1,33 @@
+---
+parser: babel-eslint
+
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+    impliedStrict: true
+extends: airbnb
+
+plugins:
+  - react
+  - jsx-a11y
+  - import
+
+env:
+  browser: true
+
+globals:
+  t: true
+  # $: true
+  # ga: true
+  # mixpanel: true
+
+rules:
+  eqeqeq: [error, smart]
+  comma-dangle: [error, always-multiline]
+  no-eq-null: off
+  wrap-iife: [error, any]
+  semi: [warn, never]
+  consistent-return: off
+  indent: ['error', 2, { 'SwitchCase': 0 }]
+  max-len: ['error', 120]
