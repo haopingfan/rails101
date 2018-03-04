@@ -2,6 +2,10 @@ class GroupUsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group
 
+  def say_hi
+    puts "hello"
+  end
+
   def create
     if current_user.member_of?(@group)
       flash[:warning] = '你已經是本版討論成員了！'
