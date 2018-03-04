@@ -3,6 +3,10 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
 
+  def say_hi
+    puts "hello"
+  end
+
   def index
     @groups = Group.all
   end
